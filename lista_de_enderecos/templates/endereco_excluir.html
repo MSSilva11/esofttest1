@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exclusão de Endereços</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+          integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+
+    <style rel="stylesheet" type="text/css">
+        h2 {
+            margin: 15px;
+        }
+
+        form {
+            margin: 15px;
+            width: 700px;
+
+            padding: 1em;
+            border: 1px solid #CCC;
+            border-radius: 1em;
+        }
+
+        form div + div {
+            margin-top: 1em;
+        }
+
+        .botao{
+            text-align: right;
+            margin: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+    <h2>Exclusão de Endereço</h2>
+
+    <hr>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        {% for dados in selecionado %}
+            <th>
+              Você tem certeza que quer excluir o CEP
+              <b>{{ dados.cep }}</b>?
+            </th>
+        {% endfor %}
+
+        <hr>
+
+        <div class="botao">
+            <a href="{% url "dados_list" %}">
+                <button type="button" class="btn btn-outline-primary"> Cancelar </button>
+            </a>
+
+            <button type="submit" class="btn btn-primary"> Excluir </button>
+        </div>
+    </form>
+</body>
+</html>

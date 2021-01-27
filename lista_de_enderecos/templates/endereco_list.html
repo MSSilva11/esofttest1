@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Endereços</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+          integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+
+    <style>
+        h1 {
+            margin: 15px;
+        }
+
+        table {
+            padding: 1em;
+            border: 1px solid #CCC;
+        }
+
+        .text-container .text-container2 {
+            width: auto;
+            max-width: 300px;
+            height: 30px;
+            overflow: hidden;
+            text-overflow: clip;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+
+        }
+
+        .text-container2:hover {
+            max-width: 300px;
+            height: 150px;
+            overflow: auto;
+            text-overflow: inherit;
+            white-space: nowrap;
+        }
+
+
+
+        .botaoexc {
+            font-size:20px;
+            color:gray(100);
+            border: none;
+            background: none;
+        }
+        .botaocad {
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/ff2ece05cf.js" crossorigin="anonymous"></script>
+    
+    <h1>Lista de Endereços</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>CEP</th>
+                <th>Endereço</th>
+                <th>Número</th>
+                <th>Complemento</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>UF</th>
+                <th>Descrição</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dados in lista %}
+                <tr>
+                    <td>
+                        <div class="text-container">
+                            <div class="text-container2">
+                                {{ dados.cep }}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-container">
+                            <div class="text-container2">
+                                {{ dados.endereco }}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-container">
+                            <div class="text-container2">
+                                {{ dados.numero }}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-container">
+                            <div class="text-container2">
+                                {{ dados.complemento }}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-container">
+                            <div class="text-container2">
+                                {{ dados.bairro }}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-container">
+                            <div class="text-container2">
+                                {{ dados.cidade }}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-container">
+                            <div class="text-container2">
+                                {{ dados.uf }}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-container">
+                            <div class="text-container2">
+                                {{ dados.descricao|linebreaksbr }}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="{% url "dados_excluir" %}?id={{ dados.id }}">
+                            <button type="submit"class="botaoexc"><i class="fas fa-trash-alt"></i></button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url "dados_new" %}" class="botaocad">
+        <button type="submit" class="btn btn-primary"> Cadastrar </button>
+    </a>
+</body>
+</html>
